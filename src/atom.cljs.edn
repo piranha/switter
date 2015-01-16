@@ -1,0 +1,2 @@
+{:require [switter.atom]
+ :init-fns [switter.atom/init]}

@@ -1,0 +1,2 @@
+{:require [switter.ui]
+ :init-fns [switter.ui/trigger-render]}
