@@ -5,11 +5,13 @@
 
 (defn -init [err api]
   (let [window (.window api #js {:root_url "http://localhost:3000/"
+                                 :title "Switter"
                                  :size #js {:width 400
                                             :height 800}})]
     (.on window "closed" #(.exit js/process 0))
     (doto window
       .show
+      .open_devtools
       .focus)
     (swap! main-window window)))
 

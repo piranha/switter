@@ -1,7 +1,7 @@
 #!/usr/bin/env boot
 
 (set-env!
-  :source-paths #{"src"}
+  :source-paths #{"src" "style"}
   :resource-paths #{"resources/public"}
   :dependencies '[[adzerk/boot-cljs "0.0-2629-8" :scope "test"]
                   [adzerk/boot-cljs-repl "0.1.7" :scope "test"]
@@ -37,10 +37,11 @@
   []
   (comp
     (serve :port 3000)
-    ;;(from-cljsjs :target-path "public")
+    (from-cljsjs :profile :development)
     (watch)
     ;;(speak)
     (notify)
+    (reload :on-jsload 'switter.ui/trigger-render)
     (cljs-repl)
     (cljs :source-map true
           :optimizations :none

@@ -7,4 +7,3 @@
 
 (defn trigger-render []
   (rum/mount (label 5 "abc") (.-body js/document)))
-
