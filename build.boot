@@ -3,10 +3,11 @@
 (set-env!
   :source-paths #{"src"}
   :resource-paths #{"resources/public"}
-  :dependencies '[[adzerk/boot-cljs "0.0-2629-5" :scope "test"]
+  :dependencies '[[adzerk/boot-cljs "0.0-2629-8" :scope "test"]
                   [adzerk/boot-cljs-repl "0.1.7" :scope "test"]
                   [adzerk/boot-reload "0.2.3" :scope "test"]
-                  [pandeiro/boot-http "0.4.2" :scope "test"]
+                  [pandeiro/boot-http "0.5.0" :scope "test"]
+                  [jeluard/boot-notify "0.1.1" :scope "test"]
 
                   [org.webjars/bootstrap "3.3.1"]
                   [deraen/boot-less "0.2.1" :scope "test"]
@@ -28,16 +29,18 @@
   '[adzerk.boot-reload :refer [reload]]
   '[pandeiro.boot-http :refer [serve]]
   '[cljsjs.boot-cljsjs :refer [from-cljsjs]]
-  '[deraen.boot-less :refer [less]])
+  '[deraen.boot-less :refer [less]]
+  '[jeluard.boot-notify :refer [notify]])
 
 (deftask dev
   "Start dev compiler/watcher/server"
   []
   (comp
     (serve :port 3000)
-    (from-cljsjs :target-path "public")
+    ;;(from-cljsjs :target-path "public")
     (watch)
     ;;(speak)
+    (notify)
     (cljs-repl)
     (cljs :source-map true
           :optimizations :none

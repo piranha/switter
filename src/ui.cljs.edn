@@ -1,2 +1,3 @@
 {:require [switter.ui]
- :init-fns [switter.ui/trigger-render]}
+ :init-fns [switter.ui/trigger-render]
+ :compiler-options {:optimizations :none}}

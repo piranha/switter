@@ -1,9 +1,6 @@
 (ns switter.atom)
 
-(declare init-browser quit-app)
 (def app (js/require "app"))
-(.on app "window-all-closed" quit-app)
-(.on app "ready" init-browser)
 
 (def BrowserWindow (js/require "browser-window"))
 (def crash-reporter (js/require "crash-reporter"))
@@ -12,13 +9,16 @@
 
 (defn init-browser []
   (let [browser (BrowserWindow. #js {:width 400 :height 600})]
-    (reset! main-window browser)
-    (.loadUrl browser (str "http://localhost:3000/"))
-    (.on browser "closed" #(reset! main-window nil))))
+    (.loadUrl browser "http://localhost:3000/index.html")
+    (.on browser "closed" #(reset! main-window nil))
+    (reset! main-window browser)))
 
 (defn quit-app []
   (when-not (= js/process.platform "darwin")
     (.quit app)))
+
+(.on app "window-all-closed" quit-app)
+(.on app "ready" init-browser)
 
 (defn init []
   (.start crash-reporter))
