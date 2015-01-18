@@ -1,4 +1,0 @@
-{:require [switter.atom]
- :init-fns [switter.atom/init]
- :compiler-options {:optimizations :none
-                    :target :nodejs}}

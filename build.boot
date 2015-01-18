@@ -46,26 +46,3 @@
           :optimizations :none
           :compiler-options {:cache-analysis true})
     (less :source-map true)))
-
-;; (deftask ui-dev
-;;   "Start ui watcher"
-;;   []
-;;   (comp (serve :port 3000)
-;;     (from-cljsjs :target-path "public")
-;;     (watch)
-;;     ;;(speak)
-;;     ;;(reload :on-jsload 'switter.ui.main/trigger-render)
-;;     (cljs-repl)
-;;     (cljs :source-map true
-;;           :optimizations :none
-;;           :unified-mode true
-;;           :output-to "ui.js"
-;;           :cache-analysis true)
-;;     (less :source-map true)))
-
-;; (deftask dev
-;;   "start dev env"
-;;   []
-;;   (comp
-;;     (atom-dev)
-;;     (ui-dev)))
