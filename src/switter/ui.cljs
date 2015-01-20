@@ -3,7 +3,9 @@
             [datascript :as db]))
 
 (rum/defc label [n text]
-  [:.label (repeat n text)])
+  [:div
+   (for [i (range n)]
+     [:div {:key i} (str text " ") [:span.badge i]])])
 
 (defn trigger-render []
-  (rum/mount (label 5 "abc") (.-body js/document)))
+  (rum/mount (label 5 "abcd") (.getElementById js/document "content")))
